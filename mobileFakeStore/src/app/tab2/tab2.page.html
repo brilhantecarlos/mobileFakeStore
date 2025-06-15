@@ -1,17 +1,25 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 2
+      Detalhes do Produto
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <app-explore-container name="Tab 2 page"></app-explore-container>
+<ion-content *ngIf="!loading && product" class="product-detail-content">
+  <div class="product-detail-card">
+    <img [src]="product.image" alt="{{product.title}}" class="product-image" />
+    <div class="product-info">
+      <h2 class="product-title">{{ product.title }}</h2>
+      <span class="product-category">{{ product.category }}</span>
+      <h3 class="product-price">R$ {{ product.price | number:'1.2-2' }}</h3>
+      <p class="product-description">{{ product.description }}</p>
+      <ion-button expand="block" class="btn-roxo">
+        Adicionar ao carrinho
+      </ion-button>
+    </div>
+  </div>
 </ion-content>
+
+<ion-spinner *ngIf="loading"></ion-spinner>
+<ion-text color="danger" *ngIf="error">{{ error }}</ion-text>

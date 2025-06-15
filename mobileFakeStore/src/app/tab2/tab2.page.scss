@@ -1,0 +1,70 @@
+.product-detail-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.product-detail-card {
+  border-radius: 16px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+  padding: 24px;
+  max-width: 400px;
+  width: 100%;
+  margin: 32px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.product-image {
+  width: 220px;
+  height: 220px;
+  object-fit: contain;
+  border-radius: 12px;
+  margin-bottom: 18px;
+  background: white;
+}
+
+.product-info {
+  width: 100%;
+  text-align: center;
+}
+
+.product-title {
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.product-category {
+  display: inline-block;
+  background: #e1b6f7;
+  color: #6c1e8f;
+  border-radius: 8px;
+  padding: 2px 12px;
+  font-size: 0.9rem;
+  margin-bottom: 10px;
+}
+
+.product-price {
+  color: #6c1e8f;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 12px 0;
+}
+
+.product-description {
+  color: #444;
+  font-size: 1rem;
+  margin-bottom: 18px;
+}
+
+.btn-roxo {
+  --background: #e1b6f7;
+  --background-hover: #d18cf7;
+  --background-activated: #c06be6;
+  --color: #6c1e8f;
+  font-weight: bold;
+  border-radius: 8px;
+}
