@@ -14,7 +14,7 @@
       <span class="product-category">{{ product.category }}</span>
       <h3 class="product-price">R$ {{ product.price | number:'1.2-2' }}</h3>
       <p class="product-description">{{ product.description }}</p>
-      <ion-button expand="block" class="btn-roxo">
+      <ion-button expand="block" class="btn-roxo" (click)="addToCart(product)">
         Adicionar ao carrinho
       </ion-button>
     </div>

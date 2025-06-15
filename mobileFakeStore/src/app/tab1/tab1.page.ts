@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { FakeStoreService } from '../services/fake-store.service';
+import { ModalController } from '@ionic/angular';
+import { CartModalComponent } from '../components/cart-modal/cart-modal.component';
+import { CartService } from '../services/cart.service';
 
 @Component({
   selector: 'app-tab1',
@@ -16,7 +19,16 @@ export class Tab1Page {
   selectedCategory: string = 'Todas';
   error: string | null = null;
 
-  constructor(private fakeStoreService: FakeStoreService) {}
+  constructor(private fakeStoreService: FakeStoreService,
+    private modalCtrl: ModalController
+  ) {}
+
+  async openCart() {
+    const modal = await this.modalCtrl.create({
+      component: CartModalComponent
+    });
+    await modal.present();
+  }
 
   ngOnInit() {
     this.fakeStoreService.getProducts().subscribe({

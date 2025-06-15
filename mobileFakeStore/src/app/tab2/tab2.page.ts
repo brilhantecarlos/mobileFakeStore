@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FakeStoreService } from '../services/fake-store.service';
+import { CartService } from '../services/cart.service';
 
 @Component({
   selector: 'app-tab2',
@@ -15,7 +16,8 @@ export class Tab2Page implements OnInit {
   error: string = '';
 
   constructor(private route: ActivatedRoute,
-    private fakeStoreService: FakeStoreService
+    private fakeStoreService: FakeStoreService,
+    private cartService: CartService
   ) {}
 
   ngOnInit() {
@@ -47,5 +49,11 @@ export class Tab2Page implements OnInit {
         this.loading = false;
       }
     });
+  }
+
+  addToCart(product: any) {
+    this.cartService.addToCart(product, 1);
+    
+    alert(`${product.title} adicionado ao carrinho!`);
   }
 }
