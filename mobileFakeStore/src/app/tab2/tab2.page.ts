@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FakeStoreService } from '../services/fake-store.service';
 import { CartService } from '../services/cart.service';
+import { ModalController } from '@ionic/angular';
+import { CartModalComponent } from '../components/cart-modal/cart-modal.component';
 
 @Component({
   selector: 'app-tab2',
@@ -17,8 +19,16 @@ export class Tab2Page implements OnInit {
 
   constructor(private route: ActivatedRoute,
     private fakeStoreService: FakeStoreService,
-    private cartService: CartService
+    private cartService: CartService,
+    private modalCtrl: ModalController
   ) {}
+
+  async openCart() {
+    const modal = await this.modalCtrl.create({
+      component: CartModalComponent
+    });
+    await modal.present();
+  }
 
   ngOnInit() {
       this.route.paramMap.subscribe(params => {
