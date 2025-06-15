@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Carrinho</ion-title>
+    <ion-buttons slot="end">
+      <ion-button color="danger" (click)="clearCart()">
+        <ion-icon name="trash-outline"></ion-icon>
+      </ion-button>
+      <ion-button (click)="close()">
+        <ion-icon name="close-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list *ngIf="cart.length > 0; else emptyCart">
+    <ion-item *ngFor="let item of cart">
+      <ion-thumbnail slot="start">
+        <img [src]="item.image" />
+      </ion-thumbnail>
+      <ion-label>
+        <h2>{{ item.title }}</h2>
+        <p>R$ {{ item.price | number:'1.2-2' }}</p>
+      </ion-label>
+      <ion-input
+        type="number"
+        min="1"
+        [value]="item.quantity"
+        (ionChange)="updateQuantity(item, $event)"
+        style="width: 60px;"
+      ></ion-input>
+      <ion-button color="danger" fill="clear" (click)="remove(item)">
+        <ion-icon name="close-outline"></ion-icon>
+      </ion-button>
+    </ion-item>
+  </ion-list>
+
+  <ion-card *ngIf="cart.length > 0">
+    <ion-card-content>
+      <h2>Total: R$ {{ total | number:'1.2-2' }}</h2>
+    </ion-card-content>
+  </ion-card>
+
+  <ng-template #emptyCart>
+    <ion-text color="medium">
+      <p style="text-align:center; margin-top: 2rem;">Seu carrinho está vazio.</p>
+    </ion-text>
+  </ng-template>
+</ion-content>

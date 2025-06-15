@@ -34,6 +34,10 @@ export class CartService {
     return[...this.cart];
   }
 
+  getTotal(): number {
+    return this.cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  }
+
   addToCart(product: any, quantity: number = 1) {
     const index = this.cart.findIndex(item => item.id === product.id);
 
