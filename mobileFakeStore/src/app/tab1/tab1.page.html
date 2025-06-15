@@ -1,27 +1,54 @@
-<ion-header [translucent]="true">
+<ion-menu side="start" menuId="categoriesMenu" contentId="main-content" (ionWillOpen)="getCategories()">
+  <ion-header>
+    <ion-toolbar color="light">
+      <ion-title>Categorias</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <ion-list>
+      <ion-item
+        button
+        *ngFor="let category of categories"
+        (click)="filterByCategory(category)"
+        [color]="selectedCategory === category ? 'primary' : ''"
+      >
+        {{ category | titlecase }}
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+
+<ion-header>
   <ion-toolbar>
-    <ion-title>
-      Produtos
-    </ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button menu="categoriesMenu"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Produtos</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content id="main-content">
   <ion-refresher slot="fixed" (ionRefresh)="ngOnInit()">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
 
-   <ion-grid>
+  <ion-grid>
     <ion-row>
       <ion-col size="12" size-md="6" size-lg="4" *ngFor="let product of products">
-        <ion-card>
-          <ion-img [src]="product.image" alt="{{product.title}}" style="object-fit: contain; height: 200px; background: #f8f8f8;"></ion-img>
+        <ion-card class="product-card">
+          <div class="img-wrapper">
+            <img [src]="product.image" alt="{{product.title}}" class="product-img" />
+          </div>
           <ion-card-header>
-            <ion-card-title>{{ product.title }}</ion-card-title>
-            <ion-card-subtitle>R$ {{ product.price | number:'1.2-2' }}</ion-card-subtitle>
+            <ion-card-title class="product-title" title="{{ product.title }}">
+              {{ product.title | slice:0:50 }}<span *ngIf="product.title.length > 50">...</span>
+            </ion-card-title>
+            <div class="category-wrapper">
+              <ion-chip class="product-category">{{ product.category }}</ion-chip>
+            </div>
           </ion-card-header>
           <ion-card-content>
-            <p>{{ product.description | slice:0:80 }}...</p>
+            <div class="product-price">R$ {{ product.price | number:'1.2-2' }}</div>
             <ion-button expand="block" class="btn-roxo" [routerLink]="['/tabs/tab2', product.id]">
               Ver detalhes
             </ion-button>
