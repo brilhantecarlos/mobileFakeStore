@@ -11,20 +11,25 @@
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
 
-  <ion-list *ngIf="!loading && !error">
-    <ion-item *ngFor="let product of products">
-      <ion-thumbnail slot="start">
-        <img [src]="product.image" alt="{{product.title}}" />
-      </ion-thumbnail>
-      <ion-label>
-        <h2>{{ product.title }}</h2>
-        <p>R$ {{ product.price | number:'1.2-2' }}</p>
-      </ion-label>
-      <ion-button fill="outline" slot="end" [routerLink]="['/tabs/tab1', product.id]">
-        Detalhes
-      </ion-button>
-    </ion-item>
-  </ion-list>
+   <ion-grid>
+    <ion-row>
+      <ion-col size="12" size-md="6" size-lg="4" *ngFor="let product of products">
+        <ion-card>
+          <ion-img [src]="product.image" alt="{{product.title}}" style="object-fit: contain; height: 200px; background: #f8f8f8;"></ion-img>
+          <ion-card-header>
+            <ion-card-title>{{ product.title }}</ion-card-title>
+            <ion-card-subtitle>R$ {{ product.price | number:'1.2-2' }}</ion-card-subtitle>
+          </ion-card-header>
+          <ion-card-content>
+            <p>{{ product.description | slice:0:80 }}...</p>
+            <ion-button expand="block" class="btn-roxo" [routerLink]="['/tabs/tab2', product.id]">
+              Ver detalhes
+            </ion-button>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
   <ion-spinner *ngIf="loading"></ion-spinner>
   <ion-text color="danger" *ngIf="error">{{ error }}</ion-text>

@@ -1,0 +1,21 @@
+.product-card {
+  height: 420px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.product-img {
+  height: 200px;
+  object-fit: contain;
+  background: #f8f8f8;
+}
+
+.btn-roxo {
+  --background: #e1b6f7;
+  --background-hover: #d18cf7;
+  --background-activated: #c06be6;
+  --color: #6c1e8f;
+  font-weight: bold;
+  border-radius: 8px;
+}
